@@ -12,6 +12,9 @@
 			<artifactId>core</artifactId>
 			<version>3.2.3</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.clojars.automata/jsminim -->
+		
 	</dependencies>
 	<build>
 		<plugins>
