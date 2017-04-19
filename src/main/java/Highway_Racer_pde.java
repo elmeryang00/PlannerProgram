@@ -1,11 +1,12 @@
-import processing.core.*; 
+import processing.core.*;
 
-/*import ddf.minim.*; 
+
+import ddf.minim.*; 
 import ddf.minim.analysis.*; 
 import ddf.minim.effects.*; 
 import ddf.minim.signals.*; 
 import ddf.minim.spi.*; 
-import ddf.minim.ugens.*; */
+import ddf.minim.ugens.*;
 
 //import Highway_Racer_pde.car;
 //import Highway_Racer_pde.carPosition;
@@ -23,8 +24,8 @@ import ddf.minim.ugens.*; */
 
 public class Highway_Racer_pde extends PApplet {
 
-//AudioPlayer[] player = new AudioPlayer[4]; 
-//Minim minim; 
+AudioPlayer[] player = new AudioPlayer[4]; 
+Minim minim; 
 //FFT fft; 
 float val; 
 int val2; 
@@ -59,13 +60,13 @@ public void setup()
   gameState=0;
   tick=0;
   y=-144; 
-  //minim = new Minim(this); 
+  minim = new Minim(this); 
   count=(int)random(0,4);
-  //player[0] = minim.loadFile("Carefree.mp3"); 
-  //player[1] = minim.loadFile("jazz.mp3"); 
-  //player[2] = minim.loadFile("ericDubstep.wav"); 
-  //player[3] = minim.loadFile("extremeaction.mp3"); 
-  //player[count].play(); 
+  player[0] = minim.loadFile("Carefree.mp3"); 
+  player[1] = minim.loadFile("jazz.mp3"); 
+  player[2] = minim.loadFile("ericDubstep.wav"); 
+  player[3] = minim.loadFile("extremeaction.mp3"); 
+  player[count].play(); 
   //fft=new FFT(player[count].bufferSize(), player[count].sampleRate()); 
   dab=createFont("Comic Sans MS",32);
   daber=createFont("Arial",12);
@@ -290,12 +291,12 @@ class tree
 
 public void draw()
 {
-  /*if(!player[count].isPlaying()) 
+  if(!player[count].isPlaying()) 
   { 
     count++; 
     if(count>3)count=0; 
     player[count].play();    
-  }  */   
+  }    
   if(gameState==0)
   {
     image(bugatti,100,300);
@@ -423,11 +424,11 @@ public void keyPressed() {
   if (key == CODED) {
     if (keyCode == UP&&(gameState==0||gameState==1||gameState==2))
     {
-      //player[count].rewind();
-      //player[count].pause();
-      //count++;
-      //if(count>3)count=0; 
-      //player[count].play();
+      player[count].rewind();
+      player[count].pause();
+      count++;
+      if(count>3)count=0; 
+      player[count].play();
     }
     if (keyCode == RIGHT&&carType==1) 
     {
@@ -497,7 +498,7 @@ public void mouseClicked()
   }*/
   if((mouseX>=250&&mouseX<=350)&&(mouseY>=25&&mouseY<=75)&&gameState==2)
   {
-    //player[count].pause();
+    player[count].pause();
     setup();
   }
   if((mouseX>=100&&mouseX<=150)&&(mouseY>=300&&mouseY<=400)&&gameState==0)

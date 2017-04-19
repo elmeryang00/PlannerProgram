@@ -12,9 +12,13 @@
 			<artifactId>core</artifactId>
 			<version>3.2.3</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.clojars.automata/jsminim -->
-		
+				<!-- https://mvnrepository.com/artifact/com.github.nifty-gui/nifty-minim-soundsystem -->
+<dependency>
+    <groupId>com.github.nifty-gui</groupId>
+    <artifactId>nifty-minim-soundsystem</artifactId>
+    <version>1.4.2</version>
+</dependency>
+				
 	</dependencies>
 	<build>
 		<plugins>
