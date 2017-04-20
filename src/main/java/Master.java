@@ -25,10 +25,26 @@ import javax.swing.TransferHandler;
 import javax.swing.WindowConstants;
 import javax.swing.border.EtchedBorder;
 
+import ddf.minim.AudioPlayer;
+import ddf.minim.Minim;
+import ddf.minim.*; 
+import ddf.minim.analysis.*; 
+import ddf.minim.effects.*; 
+import ddf.minim.signals.*; 
+import ddf.minim.spi.*; 
+import ddf.minim.ugens.*;
+
+
 public class Master {
 	static int a = 0;
 	public static JMenu background;
 	private static JLabel statusbar;
+	private static int redCustom, blueCustom, greenCustom;
+	public static JPanel panelF;
+	public static JFrame frameF;
+	public static JLabel textF;
+	AudioPlayer[] player = new AudioPlayer[4]; 
+	public  Minim minim; 
 	
 	//Timer timer = new Timer(this, 1000/60);
     //public void actionPerformed(ActionEvent e) //Checks Rando to see if it is pressed
@@ -44,27 +60,42 @@ public class Master {
 		Random c = new Random();
 		panel.setBackground(Color.WHITE);
 		
-		
+		panelF = panel;
 																// be exited
 		panel.setLayout(null); // Allows the JButtons and JLabels to be moved
 		//panel.setBackground(Color.black);
 
 		JLabel text = new JLabel("All in 1 Planner"); // Displays text Maze
 														// Runner
+		
 		text.setTransferHandler(new TransferHandler("text"));
 		text.setBounds(410, 120, 500, 70); // Sets boundaries of the Text
 		text.setFont(new Font("Serif", Font.PLAIN, 30));
+		text.setForeground(Color.BLACK);
 
-		
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.add(text);
+		textF = text;
+	    frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+	//frame.add(text);
 		frame.getContentPane().add(text);
 
 //		panel.add(text);
 		text.setVisible(true);
-
 		
+		AudioPlayer[] player = new AudioPlayer[4]; 
+		Minim minim; 
+		int count;
+		minim = new Minim(this); 
+		
+		count=(int)(Math.random()*4 + 1);
+		player[0] = minim.loadFile("Carefree.mp3"); 
+		player[1] = minim.loadFile("jazz.mp3"); 
+		player[2] = minim.loadFile("ericDubstep.wav"); 
+		player[3] = minim.loadFile("extremeaction.mp3"); 
+		player[count].play(); 
+		
+
 		JButton Alarm = new JButton(" Alarm "); // New Button for Random
+		Alarm.setToolTipText("Alarm");
 		Alarm.setTransferHandler(new TransferHandler("text"));
 		Alarm.setVisible(true);									// Play
 		Alarm.setBounds(490, 200, 450, 90); // Sets boundaries of the Buttons
@@ -82,6 +113,7 @@ public class Master {
 		
 		
 		JButton breakRoom = new JButton(" Break Room "); // New Button for Random
+		breakRoom.setToolTipText("Break Room");
 		breakRoom.setTransferHandler(new TransferHandler("text"));
 		breakRoom.setVisible(true);									// Play
 		breakRoom.setBounds(40, 200, 450, 90); // Sets boundaries of the Buttons
@@ -98,6 +130,7 @@ public class Master {
 		panel.add(breakRoom);
 		
 		JButton Calendar = new JButton(" Calendar "); // New Button for Random
+		Calendar.setToolTipText("Calendar");
 		Calendar.setTransferHandler(new TransferHandler("text"));
 		Calendar.setVisible(true);									// Play
 		Calendar.setBounds(40, 340, 450, 90); // Sets boundaries of the Buttons
@@ -115,6 +148,7 @@ public class Master {
 		panel.add(Calendar);
 
 		JButton notePad = new JButton(" NotePad "); // New Button for Random
+		notePad.setToolTipText("Note Pad");
 		notePad.setTransferHandler(new TransferHandler("text"));
 		notePad.setVisible(true);									// Play
 		notePad.setBounds(490, 340, 450, 90); // Sets boundaries of the Buttons
@@ -131,6 +165,7 @@ public class Master {
 		panel.add(notePad);
 		
 		JButton Calculator = new JButton( " Calculator ");
+		Calculator.setToolTipText("Calculator");
 		Calculator.setTransferHandler(new TransferHandler("text"));
 		Calculator.setVisible(true);
 		Calculator.setBounds(40, 480, 450, 90);
@@ -148,6 +183,7 @@ public class Master {
 		frame.setVisible(true); // Makes it visible	
 		
 		JButton ToDo = new JButton(" To-Do List "); // New Button for Random
+		ToDo.setToolTipText("To-Do List");
 		ToDo.setTransferHandler(new TransferHandler("text"));
 		ToDo.setVisible(true);									// Play
 		ToDo.setBounds(490, 480, 450, 90); // Sets boundaries of the Buttons
@@ -213,13 +249,35 @@ public class Master {
 			public void actionPerformed(ActionEvent e) 
 			{
 				 text.setForeground(Color.BLACK);
-				 System.out.println("hello");
+//				 System.out.println("hello");
+			}
+		});
+		
+		textMenu.add(Black);
+		
+		JMenuItem CustomText = new JMenuItem ("Custom");
+		CustomText.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e)
+			{
+				 Random randy = new Random();
+				 while(true){
+					 try {
+						Thread.sleep(250);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+						text.setForeground(new Color(randy.nextInt(255),randy.nextInt(255),randy.nextInt(255)));
+						text.setForeground(Color.BLUE);
+						System.out.println("setting text a hole computer");
+				 }
 			}
 		});
 				 			
-			
+		textMenu.add(CustomText);	
 				 
-		 textMenu.add(Black);
+		 
 		 
 		 background = new JMenu("Background");
 		 
@@ -284,8 +342,19 @@ public class Master {
 		custom.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				CustomSlider d = new CustomSlider();
-				frame.add(d);
+				JFrame frame = new JFrame("RGB Slider");
+				frameF = frame;
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.pack();
+				frame.setContentPane(new CustomSlider());
+				frame.setSize(245, 260);
+				frame.setVisible(true);
+				frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+				redCustom = CustomSlider.getR();
+				greenCustom = CustomSlider.getG();
+				blueCustom = CustomSlider.getB();	
+
+				
 			}
 		});
 		background.add(custom);
@@ -388,6 +457,19 @@ public class Master {
 			 });
 		 Open.add(CalculatorButton);
 		 
+		 JMenu help = new JMenu("Help");
+		 
+		 JMenuItem helpTab = new JMenuItem("Help");
+		 helpTab.addActionListener(new ActionListener() {
+			 @Override
+			 public void actionPerformed(ActionEvent e) {
+					TipOfDay g = new TipOfDay();
+					frame.add(g);
+			 }
+		 });
+		 menubar.add(help);
+		 help.add(helpTab);
+		 
 		 view.add(sbar);
 		 menubar.add(Open);
 		 menubar.add(view);
@@ -399,18 +481,29 @@ public class Master {
 		 
 		 menubar.setVisible(true);
 		 
-		 Random randy = new Random();
-		 while(true){
-			 Thread.sleep(250);
-				text.setForeground(new Color(randy.nextInt(255),randy.nextInt(255),randy.nextInt(255), 250));
-		 }
-		 
+
 
 		 }
 		 
 		 
+	 public static JPanel getPanelCustom(){
+		 return panelF;
+	 }
 		 
+	 
+	 
+	 public static JFrame getFrameCustom(){
+		 return frameF;
+	 }
+	 
+	 
+	 
+	 public static JLabel getLabelCustom(){
+		 return textF;
+	 }
 		 }
+
+
 
 
 			
