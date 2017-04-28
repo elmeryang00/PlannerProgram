@@ -20,9 +20,10 @@ import javax.swing.JSeparator;
 import javax.swing.JTextPane;
 import javax.swing.WindowConstants;
 
-public class TipOfDay extends JDialog {
-	public TipOfDay() {
-		setTitle("Tip of the Day");
+public class HelpMenu extends JDialog {
+	public int nFin;
+	public HelpMenu() {
+		setTitle("Help Menu");
 		JPanel basic = new JPanel();
 		
 		basic.setLayout(new BoxLayout(basic, BoxLayout.Y_AXIS));
@@ -32,7 +33,7 @@ public class TipOfDay extends JDialog {
 		JPanel topPanel = new JPanel(new BorderLayout(0, 0));
 		topPanel.setMaximumSize(new Dimension(450, 0));
 		 
-		JLabel hint = new JLabel("Planner Productivity Hints");
+		JLabel hint = new JLabel("Planner Program Tutorial");
 		hint.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
 		topPanel.add(hint);
 		
@@ -51,18 +52,23 @@ public class TipOfDay extends JDialog {
 		
 		JTextPane pane = new JTextPane();
 		pane.setContentType("text/html");
-		String closeTip = "<p><b>Closing windows using the mouse</b></p>" + "<p>Clicking with the mouse wheel on the x on the home screen closes the program" + " while clicking on the x on any other screen just closes that screen." + "This method works also with dockable windows or Log window tabs.</p>";
-		String backgroundTip = "<p><b>Customizing your background</b></p>" + "<p>In order to customize your program, right click anywhere on the home screen and select any color under background</p>";
-		String layoutTip = "<p><b>Using the Planner Layout<b></p>" + "<p>To make using the program more efficient, pull up multiple applications side by side for maximum efficiency";
+		String firstPanel = "</p><b>Getting Started</b></p>" + "<p>Welcome to the All in 1 Planner built to maximize your Productivity<p>" + "</p>Click Next to continue the Start-Up Tutorial </p>";
+		String secondPanel = "</p><b>Features</b></p>" + "<p>The All in 1 Planner contains multiple features built to double your efficiency<p>" + "The planner contains a Calendar, Calculator, Alarm, Notepad, and a To Do List that can be used in sync<p>" + " When you need a break, click the Break Room button and enjoy a variety of Brain relaxing games <p>";
+		String thirdPanel = "</p><b>Hidden Features</b></p>" + "<p>Hovering over all buttons will reveal the function in a Tool Tip<p>" + "You can also Access features from the Menu Bar at the top of the Main Screen</p>";
+		String fourthPanel = "</p><b>Congratulations!</b></p>" + "<p>You have finished the tutorial<p>" + "<p>Click the Exit Button to return to your program<p>";
+		//String fifthPanel = "</p><b>Congratulations!</b></p>" + "<p>You have finished the tutorial<p>" + "<p>Click the Exit Button to return to your program<p>";
 		
 		 ArrayList <String> tips = new ArrayList<String>();
-		 tips.add(closeTip);
-		 tips.add(backgroundTip);
-		 tips.add(layoutTip);
+		 tips.add(firstPanel);
+		 tips.add(secondPanel);
+		 tips.add(thirdPanel);
+		 tips.add(fourthPanel);
+		 //tips.add(fifthPanel);
+		 
+		 int n = 0;
+		 nFin = n;
 		
-		 int random = (int )(Math.random() * 3);
-		
-		pane.setText(tips.get(random));
+		pane.setText(tips.get(nFin));
 		pane.setEditable(false);
 		textPanel.add(pane);
 		basic.add(textPanel);
@@ -75,36 +81,86 @@ public class TipOfDay extends JDialog {
 		basic.add(boxPanel);
 		
 		JPanel bottom = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		JButton ntip = new JButton("Next Tip");
+		JButton ntip = new JButton("Next");
+		JButton ptip = new JButton("Previous");
+		ptip.setVisible(false);
 		ntip.setMnemonic(KeyEvent.VK_N);
 		ntip.addActionListener(new ActionListener() {
 			 @Override
 			public void actionPerformed(ActionEvent e) {
-				 pane.setText(tips.get((int) (Math.random() *3)));
+				 nFin ++;
+				 pane.setText(tips.get(nFin));
+				 if(nFin>=tips.size()-1)
+				 {
+					 ntip.setVisible(false);
+				 }
+				 else
+				 {
+					 ntip.setVisible(true);
+				 }
 				 
+				 if(nFin>=0)
+				 {
+					 ptip.setVisible(true);
+					 
+				 }
+				 
+				 
+				 }
+				 
+				 
+			 
+			 });
+		 
+		
+
+		
+		ptip.addActionListener(new ActionListener() {
+			 @Override
+			public void actionPerformed(ActionEvent e) {
+				 nFin --;
+				 pane.setText(tips.get(nFin));
+				 if(nFin==0)
+					 {
+						 ptip.setVisible(false);
+						 
+					 }
+				 
+				 if(nFin==tips.size()-2)
+				 {
+					 ptip.setVisible(false);
+					 ntip.setVisible(true);
+					 ptip.setVisible(true);
+					 System.out.println("hello");
+				 }
 			 }
 			 });
 		
-		
-		 bottom.add(ntip);
+		 
+		 
 		 basic.add(bottom);
 		 bottom.setMaximumSize(new Dimension(450, 0));
 		 setSize(new Dimension(450, 350));
-		 setResizable(false);
+		 bottom.add(ptip);
+		 bottom.add(ntip);
+		 setResizable(true);
 		 setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		 setLocationRelativeTo(null);
 		 setVisible(true);
 		 
-		 JDialog thisWindow = this;
+		 JDialog theWindow = this;
 		 
 		 JButton close = new JButton("Close");
 		 close.addActionListener(new ActionListener() { 
+				@SuppressWarnings("deprecation")
 				@Override
 				public void actionPerformed(ActionEvent e) //Checks Rando to see if it is pressed
 		         {
 					//basic.setVisible(false);
-					thisWindow.setVisible(false);
-					setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+					theWindow.setVisible(false);
+					
+					System.out.println("hello");
+					
 		         }
 				});  
 		 		close.setMnemonic(KeyEvent.VK_C);
@@ -112,8 +168,6 @@ public class TipOfDay extends JDialog {
 		 		
 		 }
 	 public static void main(String[] args) {
-		 new TipOfDay();
+		 new HelpMenu();
 		 }
 		}
-		 
-		 

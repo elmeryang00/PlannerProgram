@@ -81,7 +81,7 @@ public class Master {
 //		panel.add(text);
 		text.setVisible(true);
 		
-		AudioPlayer[] player = new AudioPlayer[4]; 
+		/*AudioPlayer[] player = new AudioPlayer[4]; 
 		Minim minim; 
 		int count;
 		minim = new Minim(this); 
@@ -91,7 +91,10 @@ public class Master {
 		player[1] = minim.loadFile("jazz.mp3"); 
 		player[2] = minim.loadFile("ericDubstep.wav"); 
 		player[3] = minim.loadFile("extremeaction.mp3"); 
-		player[count].play(); 
+		player[count].play();  */
+		
+
+		
 		
 
 		JButton Alarm = new JButton(" Alarm "); // New Button for Random
@@ -463,8 +466,8 @@ public class Master {
 		 helpTab.addActionListener(new ActionListener() {
 			 @Override
 			 public void actionPerformed(ActionEvent e) {
-					TipOfDay g = new TipOfDay();
-					frame.add(g);
+				 HelpMenu help = new HelpMenu();
+					frame.add(help);
 			 }
 		 });
 		 menubar.add(help);
