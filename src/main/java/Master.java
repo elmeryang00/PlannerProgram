@@ -67,7 +67,8 @@ public class Master {
 
 		JLabel text = new JLabel("All in 1 Planner"); // Displays text Maze
 														// Runner
-		
+		MusicMixer mm = new MusicMixer();//Displays the music mixer to
+											//play .wav files
 		text.setTransferHandler(new TransferHandler("text"));
 		text.setBounds(410, 120, 500, 70); // Sets boundaries of the Text
 		text.setFont(new Font("Serif", Font.PLAIN, 30));
