@@ -3,11 +3,19 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MusicMixer extends JPanel implements ActionListener
 {
@@ -17,6 +25,17 @@ public class MusicMixer extends JPanel implements ActionListener
 	JButton playButton = new JButton("Play");
 	JButton stopButton = new JButton("Stop");
 	Font customFont = new Font("",Font.BOLD,20);
+	JComboBox list =new JComboBox();
+	JFileChooser browser = new JFileChooser();
+	FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV Sound","wav");
+	int returnValue;
+	String[] musics = new String[10];
+	int index = 0;
+	File selectedFile;
+	File sound;
+	AudioInputStream ais;
+	Clip clip;
+	
 	
 	MusicMixer()
 	{
@@ -45,14 +64,83 @@ public class MusicMixer extends JPanel implements ActionListener
 		stopButton.setForeground(Color.red);
 		player.add(stopButton,BorderLayout.LINE_END);
 		
+		list.setBackground(Color.black);
+		list.setForeground(Color.CYAN);
+		player.add(list,BorderLayout.PAGE_START);
+		
+		browser.setFileFilter(filter);
+		
 		player.setSize(400,200);
 		player.setLocation(800,100);
 		player.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		player.setVisible(true);
 	}
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent ae) {
+		if(ae.getSource()==addButton)
+		{
+			returnValue = browser.showOpenDialog(player);
+			
+			if(returnValue==browser.APPROVE_OPTION)
+			{
+				selectedFile = browser.getSelectedFile();
+				musics[index] = selectedFile.toString();
+				list.addItem("Song - "+index);
+				index++;
+			}
+		}
+		else if(ae.getSource()==playButton)
+		{
+			try
+			{
+				if(list.getSelectedIndex()==0)
+				{
+					sound = new File(musics[list.getSelectedIndex()]);
+					ais = AudioSystem.getAudioInputStream(sound);
+					clip = AudioSystem.getClip();
+					clip.open(ais);
+					clip.start();
+				}
+				else if(list.getSelectedIndex()==1)
+				{
+					sound = new File(musics[list.getSelectedIndex()]);
+					ais = AudioSystem.getAudioInputStream(sound);
+					clip = AudioSystem.getClip();
+					clip.open(ais);
+					clip.start();
+				}
+				else if(list.getSelectedIndex()==2)
+				{
+					sound = new File(musics[list.getSelectedIndex()]);
+					ais = AudioSystem.getAudioInputStream(sound);
+					clip = AudioSystem.getClip();
+					clip.open(ais);
+					clip.start();
+				}
+				else if(list.getSelectedIndex()==3)
+				{
+					sound = new File(musics[list.getSelectedIndex()]);
+					ais = AudioSystem.getAudioInputStream(sound);
+					clip = AudioSystem.getClip();
+					clip.open(ais);
+					clip.start();
+				}
+				else if(list.getSelectedIndex()==4)
+				{
+					sound = new File(musics[list.getSelectedIndex()]);
+					ais = AudioSystem.getAudioInputStream(sound);
+					clip = AudioSystem.getClip();
+					clip.open(ais);
+					clip.start();
+				}
+			}
+			catch(Exception e){JOptionPane.showMessageDialog(null, e);}
+		}
+		
+		else if(ae.getSource()==stopButton)
+		{
+			clip.stop();
+		}
 		
 	}
 	
