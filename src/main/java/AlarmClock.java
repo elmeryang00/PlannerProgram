@@ -71,6 +71,7 @@ public void init() {
 	  Alarm.setVisible(true);
 	  Alarm.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	  Alarm.setTitle("Alarm"); 
+	  Alarm.setResizable(false);
 	 
 	  //Alarm.setLayout(null);
 
