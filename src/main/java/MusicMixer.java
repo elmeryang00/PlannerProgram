@@ -23,6 +23,7 @@ public class MusicMixer extends JPanel implements ActionListener
 	JLabel info = new JLabel("Media Player");
 	JButton addButton = new JButton("Add Music");
 	JButton playButton = new JButton("Play");
+	JButton pauseButton = new JButton("Pause");
 	JButton stopButton = new JButton("Stop");
 	Font customFont = new Font("",Font.BOLD,20);
 	JComboBox list =new JComboBox();
@@ -35,7 +36,9 @@ public class MusicMixer extends JPanel implements ActionListener
 	File sound;
 	AudioInputStream ais;
 	Clip clip;
-	
+	boolean playing;
+	long time;
+	int playIndex;
 	
 	MusicMixer()
 	{
@@ -46,6 +49,7 @@ public class MusicMixer extends JPanel implements ActionListener
 		addButton.addActionListener(this);
 		playButton.addActionListener(this);
 		stopButton.addActionListener(this);
+		pauseButton.addActionListener(this);
 		
 		info.setFont(new Font("",Font.ITALIC,20));
 		player.add(info,BorderLayout.PAGE_END);
@@ -64,6 +68,11 @@ public class MusicMixer extends JPanel implements ActionListener
 		stopButton.setBackground(Color.black);
 		stopButton.setForeground(Color.red);
 		player.add(stopButton,BorderLayout.LINE_END);
+		
+		pauseButton.setFont(customFont);
+		pauseButton.setBackground(Color.black);
+		pauseButton.setForeground(Color.orange);
+		player.add(pauseButton,BorderLayout.PAGE_END);
 		
 		list.setBackground(Color.black);
 		list.setForeground(Color.CYAN);
@@ -94,45 +103,120 @@ public class MusicMixer extends JPanel implements ActionListener
 		{
 			try
 			{
-				if(list.getSelectedIndex()==0)
+				if(list.getSelectedIndex()==0&&playing==false&&list.getSelectedIndex()!=playIndex)
 				{
+					time=0;
+					playIndex=list.getSelectedIndex();
 					sound = new File(musics[list.getSelectedIndex()]);
 					ais = AudioSystem.getAudioInputStream(sound);
 					clip = AudioSystem.getClip();
 					clip.open(ais);
+					clip.setMicrosecondPosition(time);
 					clip.start();
+					playing=true;
 				}
-				else if(list.getSelectedIndex()==1)
+				else if(list.getSelectedIndex()==0&&playing==false)
 				{
+					playIndex=list.getSelectedIndex();
 					sound = new File(musics[list.getSelectedIndex()]);
 					ais = AudioSystem.getAudioInputStream(sound);
 					clip = AudioSystem.getClip();
 					clip.open(ais);
+					clip.setMicrosecondPosition(time);
 					clip.start();
+					playing=true;
 				}
-				else if(list.getSelectedIndex()==2)
+				else if(list.getSelectedIndex()==1&&playing==false&&list.getSelectedIndex()!=playIndex)
 				{
+					time=0;
+					playIndex=list.getSelectedIndex();
 					sound = new File(musics[list.getSelectedIndex()]);
 					ais = AudioSystem.getAudioInputStream(sound);
 					clip = AudioSystem.getClip();
 					clip.open(ais);
+					clip.setMicrosecondPosition(time);
 					clip.start();
+					playing=true;
 				}
-				else if(list.getSelectedIndex()==3)
+				else if(list.getSelectedIndex()==1&&playing==false)
 				{
+					playIndex=list.getSelectedIndex();
 					sound = new File(musics[list.getSelectedIndex()]);
 					ais = AudioSystem.getAudioInputStream(sound);
 					clip = AudioSystem.getClip();
 					clip.open(ais);
+					clip.setMicrosecondPosition(time);
 					clip.start();
+					playing=true;
 				}
-				else if(list.getSelectedIndex()==4)
+				else if(list.getSelectedIndex()==2&&playing==false&&list.getSelectedIndex()!=playIndex)
 				{
+					time=0;
+					playIndex=list.getSelectedIndex();
 					sound = new File(musics[list.getSelectedIndex()]);
 					ais = AudioSystem.getAudioInputStream(sound);
 					clip = AudioSystem.getClip();
 					clip.open(ais);
+					clip.setMicrosecondPosition(time);
 					clip.start();
+					playing=true;
+				}
+				else if(list.getSelectedIndex()==2&&playing==false)
+				{
+					playIndex=list.getSelectedIndex();
+					sound = new File(musics[list.getSelectedIndex()]);
+					ais = AudioSystem.getAudioInputStream(sound);
+					clip = AudioSystem.getClip();
+					clip.open(ais);
+					clip.setMicrosecondPosition(time);
+					clip.start();
+					playing=true;
+				}
+				else if(list.getSelectedIndex()==3&&playing==false&&list.getSelectedIndex()!=playIndex)
+				{
+					time=0;
+					playIndex=list.getSelectedIndex();
+					sound = new File(musics[list.getSelectedIndex()]);
+					ais = AudioSystem.getAudioInputStream(sound);
+					clip = AudioSystem.getClip();
+					clip.open(ais);
+					clip.setMicrosecondPosition(time);
+					clip.start();
+					playing=true;
+				}
+				else if(list.getSelectedIndex()==3&&playing==false)
+				{
+					playIndex=list.getSelectedIndex();
+					sound = new File(musics[list.getSelectedIndex()]);
+					ais = AudioSystem.getAudioInputStream(sound);
+					clip = AudioSystem.getClip();
+					clip.open(ais);
+					clip.setMicrosecondPosition(time);
+					clip.start();
+					playing=true;
+				}
+				else if(list.getSelectedIndex()==4&&playing==false&&list.getSelectedIndex()!=playIndex)
+				{
+					time=0;
+					playIndex=list.getSelectedIndex();
+					sound = new File(musics[list.getSelectedIndex()]);
+					ais = AudioSystem.getAudioInputStream(sound);
+					clip = AudioSystem.getClip();
+					clip.open(ais);
+					clip.setMicrosecondPosition(time);
+					clip.start();
+					playing=true;
+				}
+				else if(list.getSelectedIndex()==4&&playing==false)
+				{
+					playIndex=list.getSelectedIndex();
+					sound = new File(musics[list.getSelectedIndex()]);
+					ais = AudioSystem.getAudioInputStream(sound);
+					clip = AudioSystem.getClip();
+					clip.open(ais);
+					clip.setMicrosecondPosition(time);
+					clip.start();
+					playing=true;
 				}
 			}
 			catch(Exception e){JOptionPane.showMessageDialog(null, e);}
@@ -141,6 +225,15 @@ public class MusicMixer extends JPanel implements ActionListener
 		else if(ae.getSource()==stopButton)
 		{
 			clip.stop();
+			playing=false;
+			time=0;
+		}
+		
+		else if(ae.getSource()==pauseButton)
+		{
+			time=clip.getMicrosecondPosition();
+			clip.stop();
+			playing=false;
 		}
 		
 	}

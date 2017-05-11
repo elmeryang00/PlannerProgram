@@ -68,7 +68,8 @@ public class Master {
 		MasterCreater textCreate = new MasterCreater();
 		textCreate.textDraw();
 		
-		
+		MusicMixer mm = new MusicMixer();//Displays the music mixer to
+		//play .wav files
 /*
 		JLabel text = new JLabel("All in 1 Planner"); // Displays text Maze
 														// Runner
