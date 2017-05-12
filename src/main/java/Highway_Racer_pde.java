@@ -24,7 +24,7 @@ import ddf.minim.ugens.*;
 
 public class Highway_Racer_pde extends PApplet {
 
-AudioPlayer[] player = new AudioPlayer[4]; 
+AudioPlayer[] player = new AudioPlayer[1]; 
 Minim minim; 
 //FFT fft; 
 float val; 
@@ -42,6 +42,7 @@ car wow,ouch,green;
 int tick,y,gameState,carType;
 int place=1;
 boolean boyz, woz;
+boolean startNew;
 
 public static final int delay = 10;
 
@@ -61,13 +62,10 @@ public void setup()
   tick=0;
   y=-144; 
   minim = new Minim(this); 
-  count=(int)random(0,4);
-  player[0] = minim.loadFile("Carefree.mp3"); 
-  player[1] = minim.loadFile("jazz.mp3"); 
-  player[2] = minim.loadFile("ericDubstep.wav"); 
-  player[3] = minim.loadFile("extremeaction.mp3"); 
+  count=0;
+  player[0] = minim.loadFile("extremeaction.mp3"); 
+  player[count].setGain(-10);
   player[count].play(); 
-  //fft=new FFT(player[count].bufferSize(), player[count].sampleRate()); 
   dab=createFont("Comic Sans MS",32);
   daber=createFont("Arial",12);
   background(0,100,0);
@@ -113,6 +111,7 @@ public void setup()
   text("Highway Racer",300,100);
   image(bugatti,100,300);
   image(lambo,450,300);
+  startNew=false;
   //noLoop();
 }
 class roadLine
@@ -291,12 +290,10 @@ class tree
 
 public void draw()
 {
-  if(!player[count].isPlaying()) 
-  { 
-    count++; 
-    if(count>3)count=0; 
-    player[count].play();    
-  }    
+  if(player[count].isPlaying()==false)
+  {
+	  player[count].play();
+  }
   if(gameState==0)
   {
     image(bugatti,100,300);
@@ -422,14 +419,6 @@ public void drawMap()
 }
 public void keyPressed() {
   if (key == CODED) {
-    if (keyCode == UP&&(gameState==0||gameState==1||gameState==2))
-    {
-      player[count].rewind();
-      player[count].pause();
-      count++;
-      if(count>3)count=0; 
-      player[count].play();
-    }
     if (keyCode == RIGHT&&carType==1) 
     {
       

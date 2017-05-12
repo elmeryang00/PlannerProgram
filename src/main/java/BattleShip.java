@@ -32,7 +32,7 @@ public void setup()
 {
 
   Board=(int)random(1,3);
-  println(Board);
+  //println(Board);
   score=0;
   player1Turn=false;
   boxes = new Box[10][10];
@@ -401,7 +401,7 @@ public void mouseClicked()
   {
     int mouseXPos=mouseX;
     int mouseYPos=mouseY;
-    println(mouseXPos+ " " + mouseYPos);
+    //println(mouseXPos+ " " + mouseYPos);
     for(int r=0;r<boxes.length;r++)
     {
       for(int c=0;c<boxes[0].length;c++)
