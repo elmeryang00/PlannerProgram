@@ -27,19 +27,26 @@ public class CustomSlider extends JPanel
 	public boolean isLive;
 	public JFrame frame;
 	public JLabel text;
+	public static boolean redChange;
+	public static boolean blueChange;
+	public static boolean greenChange;
+
 
 	public CustomSlider()  {
 		
 		super(true);
 		//this.setLayout(new SpringLayout());
 		SpringLayout layout = new SpringLayout();
-		redColor = 0;
-		blueColor=0;
-		greenColor=0;
+		redColor = 255;
+		blueColor=255;
+		greenColor=255;
 		redColorF = 0;
 		blueColorF = 0;
 		greenColorF = 0;
 		isLive = false;
+		redChange = false;
+		blueChange = false;
+		greenChange = false;
 		panel = Master.getPanelCustom();
 		frame = Master.getFrameCustom();
 		JSlider sliderOne = new JSlider(SwingConstants.HORIZONTAL, 0, 255, 0);
@@ -50,17 +57,21 @@ public class CustomSlider extends JPanel
 		sliderOne.setPaintTicks(true);
 		sliderOne.setPaintLabels(true);
 		sliderOne.setToolTipText("Red Value");
-
+		//sliderOne.setValue(255);
 		sliderOne.setLabelTable(sliderOne.createStandardLabels(50));
 
 		sliderOne.addChangeListener(new ChangeListener(){
 			public void stateChanged(ChangeEvent event) {
 				redColor = sliderOne.getValue();
-				panel.setBackground(new Color(redColor, blueColor, greenColor));
-				frame.setBackground(new Color(redColor, blueColor, greenColor));
+				panel.setBackground(new Color(redColor, greenColor, blueColor));
+				frame.setBackground(new Color(redColor, greenColor, blueColor));
 				text.setText("All in 1 Planner");
 				text.setForeground(Color.BLACK);
 				text.setVisible(true);
+				if(sliderOne.getValueIsAdjusting() == true)
+				{
+					redChange = true;
+				}
 			 }
 			 });
 		
@@ -74,6 +85,7 @@ public class CustomSlider extends JPanel
 		JSlider sliderTwo = new JSlider(SwingConstants.HORIZONTAL, 0, 255, 0);
 
 		sliderTwo.setMinorTickSpacing(50);
+		//sliderTwo.setValue(255);
 		//sliderTwo.setMajorTickSpacing(50);
 		sliderTwo.setPaintTicks(true);
 		sliderTwo.setPaintLabels(true);
@@ -83,11 +95,15 @@ public class CustomSlider extends JPanel
 		
 		sliderTwo.addChangeListener(new ChangeListener(){
 			public void stateChanged(ChangeEvent event) {
-				blueColor = sliderTwo.getValue();
-				panel.setBackground(new Color(redColor, blueColor, greenColor));
+				greenColor = sliderTwo.getValue();
+				panel.setBackground(new Color(redColor, greenColor, blueColor));
 				text.setText("All in 1 Planner");
 				text.setForeground(Color.BLACK);
 				text.setVisible(true);
+				if(sliderTwo.getValueIsAdjusting() == true)
+				{
+					greenChange = true;
+				}
 			 }
 			 });
 		
@@ -101,6 +117,7 @@ public class CustomSlider extends JPanel
 
 		sliderThree.setMinorTickSpacing(50);
 		//sliderThree.setMajorTickSpacing(50);
+		//sliderThree.setValue(255);
 		sliderThree.setPaintTicks(true);
 		sliderThree.setPaintLabels(true);
 		sliderThree.setToolTipText("Blue Value");
@@ -109,11 +126,15 @@ public class CustomSlider extends JPanel
 		
 		sliderThree.addChangeListener(new ChangeListener(){
 			public void stateChanged(ChangeEvent event) {
-				greenColor = sliderThree.getValue();
-				panel.setBackground(new Color(redColor, blueColor, greenColor));
+				blueColor = sliderThree.getValue();
+				panel.setBackground(new Color(redColor, greenColor, blueColor));
 				text.setText("All in 1 Planner");
 				text.setForeground(Color.BLACK);
 				text.setVisible(true);
+				if(sliderThree.getValueIsAdjusting() == true)
+				{
+					blueChange = true;
+				}
 			 }
 			 });
 
@@ -125,8 +146,8 @@ public class CustomSlider extends JPanel
 		//colorF = Color.black;
 		
 		
-		Color colorTemp = new Color(redColor, greenColor, blueColor);
-		colorF = colorTemp;
+		//Color colorTemp = new Color(redColor, greenColor, blueColor);
+		//colorF = colorTemp;
 		
 		JButton enter = new JButton("Enter");
 		enter.addActionListener(new ActionListener() {
@@ -136,12 +157,12 @@ public class CustomSlider extends JPanel
 				 greenColorF = sliderTwo.getValue();
 				 blueColorF = sliderThree.getValue();
 				 System.out.println(redColor + " " + greenColor + " " + blueColor);
-				 Color color = new Color(redColorF, greenColorF, blueColorF);
+				 Color color = new Color(redColor, greenColor, blueColor);
 				 colorF = color;
 				 panel.setBackground(colorF);
 				 isLive = true;
 				
-				 System.out.println(text.getName());
+				 /*System.out.println(text.getName());
 				 if(text.getName() == null)
 						 {
 				 text.setText("All in 1 Planner");
@@ -149,7 +170,11 @@ public class CustomSlider extends JPanel
 					text.setVisible(true);
 					System.out.println(text.getName());
 						 }
-
+				 */
+				 
+				 frame.setVisible(false);
+				 System.out.println("hello");
+				 
 			 }
 			 });
 		add(enter, SpringLayout.VERTICAL_CENTER);
@@ -211,7 +236,17 @@ public class CustomSlider extends JPanel
 		return blueColor;
 	}
 	
-
+	public static boolean getChangeR(){
+		return redChange;
+	}
+	
+	public static boolean getChangeG(){
+		return greenChange;
+	}
+	
+	public static boolean getChangeB(){
+		return blueChange;
+	}
 	
 	
 	@Override
