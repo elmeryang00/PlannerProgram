@@ -19,7 +19,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MusicMixer extends JPanel implements ActionListener
 {
-	JFrame player = new JFrame("Media Player");
+	static JFrame player = new JFrame("Media Player");
 	JLabel info = new JLabel("Media Player");
 	JButton addButton = new JButton("Add Music");
 	JButton playButton = new JButton("Play");
@@ -236,6 +236,13 @@ public class MusicMixer extends JPanel implements ActionListener
 			playing=false;
 		}
 		
+		
+		
 	}
+	 public static JFrame getFrameMusic(){
+		 return player;
+	 }
+	
+
 	
 }

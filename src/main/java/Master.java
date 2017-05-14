@@ -45,6 +45,7 @@ public class Master {
 	public static JLabel textF;
 	AudioPlayer[] player = new AudioPlayer[4]; 
 	public  Minim minim; 
+	public static JFrame musicPlayer;
 	
 	//Timer timer = new Timer(this, 1000/60);
     //public void actionPerformed(ActionEvent e) //Checks Rando to see if it is pressed
@@ -70,6 +71,8 @@ public class Master {
 		
 		MusicMixer mm = new MusicMixer();//Displays the music mixer to
 		//play .wav files
+		musicPlayer = MusicMixer.getFrameMusic();
+		musicPlayer.setVisible(false);
 /*
 		JLabel text = new JLabel("All in 1 Planner"); // Displays text Maze
 														// Runner
@@ -484,16 +487,22 @@ public class Master {
 		 
 		 JMenu Music = new JMenu("Music");
 		 
-		 JMenuItem mPlayer = new JMenuItem("Music Player");
-		 mPlayer.addActionListener(new ActionListener() {
-			 @Override
-			 public void actionPerformed(ActionEvent e) {
-				 MusicMixer mm = new MusicMixer();//Displays the music mixer to
-					//play .wav files
-			 }
+		 JCheckBoxMenuItem musicBar = new JCheckBoxMenuItem("Show Music");
+		 musicBar.setState(false);
+		 musicBar.addActionListener(new ActionListener() {
+		 @Override
+		public void actionPerformed(ActionEvent event) {
+			 if (musicPlayer.isVisible()) {
+		 musicPlayer.setVisible(false);
+		 } 
+			 else {
+		 musicPlayer.setVisible(true);
+		 }
+		 }
 		 });
+		 Music.add(musicBar);
 		 menubar.add(Music);
-		 Music.add(mPlayer);
+
 		 
 		 view.add(sbar);
 		 menubar.add(Open);
