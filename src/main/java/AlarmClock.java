@@ -67,7 +67,7 @@ public class AlarmClock  extends Applet implements ActionListener, Runnable {
 public void init() {
 
 	  JFrame Alarm = new JFrame("Alarm");
-	  Alarm.setSize(410, 410);
+	  Alarm.setSize(350, 330);
 	  Alarm.setVisible(true);
 	  Alarm.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	  Alarm.setTitle("Alarm"); 
