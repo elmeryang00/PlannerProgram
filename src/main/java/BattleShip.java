@@ -69,7 +69,7 @@ public void setup()
     xpos=75;
     ypos+=50;
   }
-  boardSetup(4,boxes);//calls for random ship setup
+  boardSetup(Board,boxes);//calls for random ship setup
   fill(255);
   rect(800,450,200,200);
   fill(255,0,0);
