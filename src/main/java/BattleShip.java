@@ -31,7 +31,7 @@ public void doThis()
 public void setup()
 {
 
-  Board=(int)random(1,3);
+  Board=(int)random(1,4);
   //println(Board);
   score=0;
   player1Turn=false;
@@ -65,7 +65,7 @@ public void setup()
     xpos=75;
     ypos+=50;
   }
-  boardSetup(Board,boxes);//calls for random ship setup
+  boardSetup(4,boxes);//calls for random ship setup
   fill(255);
   rect(800,450,200,200);
   fill(255,0,0);
@@ -230,6 +230,44 @@ public void boardSetup(int b,Box[][] boxes)//uses random number to choose a boar
       xposition=boxes[r][7].getX();
       yposition=boxes[r][7].getY();
       boxes[r][7]= new ShipBox(xposition,yposition,size);
+      Submarine.add(new ShipBox(xposition,yposition,size));
+    }
+  }
+  if(b==4)
+  {
+    for(int r=3;r<5;r++)
+    {
+      xposition=boxes[1][r].getX();
+      yposition=boxes[1][r].getY();
+      boxes[1][r]= new ShipBox(xposition,yposition,size);
+      PatrolBoat.add(new ShipBox(xposition,yposition,size));
+    }
+    for(int c=0;c<4;c++)
+    {
+      xposition=boxes[9][c].getX();
+      yposition=boxes[9][c].getY();
+      boxes[9][c]= new ShipBox(xposition,yposition,size);
+      BattleShip.add(new ShipBox(xposition,yposition,size));
+    }
+    for(int c=7;c<10;c++)
+    {
+      xposition=boxes[c][6].getX();
+      yposition=boxes[c][6].getY();
+      boxes[c][6]=new ShipBox(xposition,yposition,size);
+      Destroyer.add(new ShipBox(xposition,yposition,size));
+    }
+    for(int r=1;r<6;r++)
+    {
+      xposition=boxes[r][0].getX();
+      yposition=boxes[r][0].getY();
+      boxes[r][0]= new ShipBox(xposition,yposition,size);
+      AircraftCarrier.add(new ShipBox(xposition,yposition,size));
+    }
+    for(int c=2;c<5;c++)
+    {
+      xposition=boxes[5][c].getX();
+      yposition=boxes[5][c].getY();
+      boxes[5][c]= new ShipBox(xposition,yposition,size);
       Submarine.add(new ShipBox(xposition,yposition,size));
     }
   }
