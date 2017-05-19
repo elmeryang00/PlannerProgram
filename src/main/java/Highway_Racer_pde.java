@@ -1,12 +1,14 @@
-import processing.core.*;
+import java.awt.Frame;
 
+import javax.swing.WindowConstants;
 
-import ddf.minim.*; 
-import ddf.minim.analysis.*; 
-import ddf.minim.effects.*; 
-import ddf.minim.signals.*; 
-import ddf.minim.spi.*; 
-import ddf.minim.ugens.*;
+import ddf.minim.AudioPlayer;
+import ddf.minim.Minim;
+import processing.awt.PSurfaceAWT;
+import processing.awt.PSurfaceAWT.SmoothCanvas;
+import processing.core.PApplet;
+import processing.core.PFont;
+import processing.core.PImage;
 
 //import Highway_Racer_pde.car;
 //import Highway_Racer_pde.carPosition;
@@ -48,16 +50,20 @@ public static final int delay = 10;
 
 public void start(boolean dab)//input to build an applet
 {
+	
 	woz=dab;
 	if(woz==true)//if input is true, will build applet
 	{
 	String[] appletArgs = new String[] {"Highway_Racer_pde"};
     PApplet.main(appletArgs);
+    
 	}
 }
 @Override
 public void setup()
 {
+  
+  
   gameState=0;
   tick=0;
   y=-144; 
@@ -489,13 +495,22 @@ public void mouseClicked()
   {
     player[count].pause();
     setup();
+	  
+	  
   }
   if((mouseX>=100&&mouseX<=150)&&(mouseY>=300&&mouseY<=400)&&gameState==0)
-  {
+  { 
     gameState=1;
     loop();
     wow=new car(garbage[1],bugatti,"main");
     carType=1;
+    
+    /* 
+     Taylor's code
+     Frame frame = ( (SmoothCanvas) ((PSurfaceAWT)surface).getNative()).getFrame();
+	  frame.dispose();
+	  */
+    
   }
   if((mouseX>=450&&mouseX<=500)&&(mouseY>=300&&mouseY<=400)&&gameState==0)
   {
