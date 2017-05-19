@@ -2,6 +2,7 @@
 import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -72,6 +73,7 @@ public void init() {
 	  Alarm.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	  Alarm.setTitle("Alarm"); 
 	  Alarm.setResizable(false);
+	  
 	 
 	  //Alarm.setLayout(null);
 
@@ -79,18 +81,22 @@ public void init() {
 	   
       Alarm.setLayout(new BorderLayout());
       JPanel topPanel = new JPanel();
+      topPanel.setBackground(new Color(CustomSlider.getR(), CustomSlider.getG(), CustomSlider.getB()));
       topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
 
       JPanel alarmPanel = new JPanel();
       alarmPanel.setLayout(null);
       alarmPanel.setLayout(new BoxLayout(alarmPanel, BoxLayout.Y_AXIS));
+      alarmPanel.setBackground(new Color(CustomSlider.getR(), CustomSlider.getG(), CustomSlider.getB()));
 
       filePanel = new JPanel();
       filePanel.setLayout(new BoxLayout(filePanel, BoxLayout.Y_AXIS));
+      filePanel.setBackground(new Color(CustomSlider.getR(), CustomSlider.getG(), CustomSlider.getB()));
 
       
       JLabel topLabel = new JLabel("Current Time:");
       topLabel.setHorizontalAlignment(SwingConstants.CENTER);
+      topLabel.setBackground(new Color(CustomSlider.getR(), CustomSlider.getG(), CustomSlider.getB()));
       topLabel.setFont(topLabel.getFont().deriveFont(20.0f));
       topPanel.add(topLabel);
 
@@ -122,6 +128,7 @@ public void init() {
       
 
       JPanel text = new JPanel();
+      text.setBackground(new Color(CustomSlider.getR(), CustomSlider.getG(), CustomSlider.getB()));
       text.setLayout(null);
       JLabel hourText = new JLabel();
       JTextField r = new JTextField("Insert Hour", 5) ;
@@ -183,8 +190,10 @@ public void init() {
       
       JPanel minutePanel = new JPanel();
       minutePanel.setLayout(null);
+      minutePanel.setBackground(new Color(CustomSlider.getR(), CustomSlider.getG(), CustomSlider.getB()));
       
       JLabel minutesDisplay = new JLabel();
+      
       minutesDisplay.setBounds(10, 100, 100, 30);
       minutePanel.setLayout(null);
       

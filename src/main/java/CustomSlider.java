@@ -17,9 +17,9 @@ import javax.swing.event.ChangeListener;
 
 public class CustomSlider extends JPanel
 						implements ChangeListener{
-	public static int redColor;
-	public static int blueColor;
-	public static int greenColor;
+	public static int redColor = 255;
+	public static int blueColor = 255;
+	public static int greenColor = 255;
 	public static int redColorF, blueColorF, greenColorF;
 	public static Color colorF;
 	public JPanel panel;
@@ -30,6 +30,7 @@ public class CustomSlider extends JPanel
 	public static boolean redChange;
 	public static boolean blueChange;
 	public static boolean greenChange;
+	
 
 
 	public CustomSlider()  {
@@ -39,7 +40,7 @@ public class CustomSlider extends JPanel
 		SpringLayout layout = new SpringLayout();
 		redColor = 255;
 		blueColor=255;
-		greenColor=255;
+		greenColor= 255;
 		redColorF = 0;
 		blueColorF = 0;
 		greenColorF = 0;
@@ -57,7 +58,7 @@ public class CustomSlider extends JPanel
 		sliderOne.setPaintTicks(true);
 		sliderOne.setPaintLabels(true);
 		sliderOne.setToolTipText("Red Value");
-		//sliderOne.setValue(255);
+		sliderOne.setValue(255);
 		sliderOne.setLabelTable(sliderOne.createStandardLabels(50));
 
 		sliderOne.addChangeListener(new ChangeListener(){
@@ -85,7 +86,7 @@ public class CustomSlider extends JPanel
 		JSlider sliderTwo = new JSlider(SwingConstants.HORIZONTAL, 0, 255, 0);
 
 		sliderTwo.setMinorTickSpacing(50);
-		//sliderTwo.setValue(255);
+		sliderTwo.setValue(255);
 		//sliderTwo.setMajorTickSpacing(50);
 		sliderTwo.setPaintTicks(true);
 		sliderTwo.setPaintLabels(true);
@@ -117,7 +118,7 @@ public class CustomSlider extends JPanel
 
 		sliderThree.setMinorTickSpacing(50);
 		//sliderThree.setMajorTickSpacing(50);
-		//sliderThree.setValue(255);
+		sliderThree.setValue(255);
 		sliderThree.setPaintTicks(true);
 		sliderThree.setPaintLabels(true);
 		sliderThree.setToolTipText("Blue Value");

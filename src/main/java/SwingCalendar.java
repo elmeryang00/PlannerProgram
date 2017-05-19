@@ -13,7 +13,7 @@ public class SwingCalendar extends JFrame {
   SwingCalendar() {
  
     this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    
+    this.setBackground(new Color(CustomSlider.getR(), CustomSlider.getG(), CustomSlider.getB()));
     this.setTitle("Swing Calandar");
     this.setSize(300,200);
     this.setLayout(new BorderLayout());
@@ -46,12 +46,15 @@ public class SwingCalendar extends JFrame {
     panel.add(b1,BorderLayout.WEST);
     panel.add(label,BorderLayout.CENTER);
     panel.add(b2,BorderLayout.EAST);
+    panel.setBackground(new Color(CustomSlider.getR(), CustomSlider.getG(), CustomSlider.getB()));
  
  
     String [] columns = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
     model = new DefaultTableModel(null,columns);
     JTable table = new JTable(model);
+    table.setBackground(new Color(CustomSlider.getR(), CustomSlider.getG(), CustomSlider.getB()));
     JScrollPane pane = new JScrollPane(table);
+    pane.setBackground(new Color(CustomSlider.getR(), CustomSlider.getG(), CustomSlider.getB()));
  
     this.add(panel,BorderLayout.NORTH);
     this.add(pane,BorderLayout.CENTER);

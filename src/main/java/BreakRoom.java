@@ -29,7 +29,11 @@ public class BreakRoom implements ActionListener {
 		JPanel panel = new JPanel();
 		frame.setSize(1000, 1000); // Sets size of JFrame
 		frame.setVisible(true); // Makes it visible
-		panel.setBackground(Color.WHITE);
+		panel.setBackground(new Color(CustomSlider.getR(), CustomSlider.getG(), CustomSlider.getB()));
+		
+		System.err.println(CustomSlider.getR() +  " " + CustomSlider.getG() + " " + CustomSlider.getB());
+		System.out.println(CustomSlider.getR() + " " + CustomSlider.getG() + " " + CustomSlider.getB());
+
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Allows JFrame
 											// to																	// be exited
 		panel.setLayout(null); // Allows the JButtons and JLabels to be moved
