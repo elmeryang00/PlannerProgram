@@ -1,6 +1,10 @@
 
 
-import processing.core.*; 
+import processing.awt.PSurfaceAWT;
+import processing.awt.PSurfaceAWT.SmoothCanvas;
+import processing.core.*;
+
+import java.awt.Frame;
 import java.util.ArrayList; 
 
 public class BattleShip extends PApplet {
@@ -426,10 +430,22 @@ public void draw()
     textSize(50);
     text("Game Over",350,350);
   }
+  fill(255,0,0);
+  rect(900,0,100,50);
+  fill(0);
+  textAlign(CENTER);
+  textSize(9);
+  text("Return to Break Room",950,25);
 }
 @Override
 public void mouseClicked()
 {
+  if((mouseX>=900&&mouseX<=1000)&&(mouseY>=0&&mouseY<=50))
+  {
+	 Frame frame = ( (SmoothCanvas) ((PSurfaceAWT)surface).getNative()).getFrame();
+	 frame.dispose();
+	 stop();
+  }
   if((mouseX>=700&&mouseX<=800)&&(mouseY>=50&&mouseY<=100))//checks if mouse was clicked inside the start button
   {
     loop();

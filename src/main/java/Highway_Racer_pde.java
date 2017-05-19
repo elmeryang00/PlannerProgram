@@ -416,6 +416,12 @@ public void draw()
       gameState=2;
     }
   }
+  fill(255,0,0);
+  rect(500,0,100,50);
+  fill(0);
+  textAlign(CENTER);
+  textSize(9);
+  text("Return to Break Room",550,25);
 }
 public void drawMap()
 {
@@ -491,26 +497,26 @@ public void mouseClicked()
     gameState=1;
     loop();
   }*/
+  if((mouseX>=500&&mouseX<=600)&&(mouseY>=0&&mouseY<=50))
+  {
+	  player[count].pause();
+	  delay(100);
+	  Frame frame = ( (SmoothCanvas) ((PSurfaceAWT)surface).getNative()).getFrame();
+	  frame.dispose();
+	  player[count].pause();
+	  stop();
+  }
   if((mouseX>=250&&mouseX<=350)&&(mouseY>=25&&mouseY<=75)&&gameState==2)
   {
     player[count].pause();
-    setup();
-	  
-	  
+    setup();	  
   }
   if((mouseX>=100&&mouseX<=150)&&(mouseY>=300&&mouseY<=400)&&gameState==0)
   { 
     gameState=1;
     loop();
     wow=new car(garbage[1],bugatti,"main");
-    carType=1;
-    
-    /* 
-     Taylor's code
-     Frame frame = ( (SmoothCanvas) ((PSurfaceAWT)surface).getNative()).getFrame();
-	  frame.dispose();
-	  */
-    
+    carType=1; 
   }
   if((mouseX>=450&&mouseX<=500)&&(mouseY>=300&&mouseY<=400)&&gameState==0)
   {

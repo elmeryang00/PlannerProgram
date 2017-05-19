@@ -98,7 +98,7 @@ public class Master {
 		 * panel.add(text); text.setVisible(true);
 		 * 
 		 */
- 		 * AudioPlayer[] player = new AudioPlayer[4]; Minim minim; int count;
+ 		 /* AudioPlayer[] player = new AudioPlayer[4]; Minim minim; int count;
 		 * minim = new Minim(this);
 		 * 
 		 * count=(int)(Math.random()*4 + 1); player[0] =
