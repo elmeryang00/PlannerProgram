@@ -69,9 +69,10 @@ public class TipOfDay extends JDialog {
 		 
 		JPanel boxPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 0));
 		 
-		JCheckBox box = new JCheckBox("Show Tips at startup");
+		/*JCheckBox box = new JCheckBox("Show Tips at startup");
 		box.setMnemonic(KeyEvent.VK_S);
-		boxPanel.add(box);
+		boxPanel.add(box); */
+		
 		basic.add(boxPanel);
 		
 		JPanel bottom = new JPanel(new FlowLayout(FlowLayout.RIGHT));

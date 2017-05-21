@@ -10,43 +10,19 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 public class Calculator extends JFrame{
+	
+	/*
+	 Calculator that does basic functions such as Multiplication, Subtraction, Division, and Addition. Allows Integer and Decimal functions.
+	 */
 	private static final long serialVersionUID = 1L;
 	JTextField numDisplay;
-	JButton zero;
-	JButton one;
-	JButton two;
-	JButton three;
-	JButton four;
-	JButton five;
-	JButton six;
-	JButton seven;
-	JButton eight;
-	JButton nine;
-	JButton add;
-	JButton subtract;
-	JButton multiply;
-	JButton divide;
-	JButton percent;
-	JButton equals;
-	JButton clear;
-	String addString;
-	String subString;
-	String multiString;
-	String divString;
-	String finalString;
-	double addDouble;
-	double subDouble;
-	double multiDouble;
-	double divDouble;
-	double finalDouble;
-	double answer;
-	String answerAsString;
-	String percentAsString;
-	double percentAsDouble;
-	double prcntAnswerAsDouble;
-	String prcntAnswerAsString;
-	JButton decimalPoint;
-
+	JButton zero, one, two, three, four, five, six, seven, eight, nine, add, subtract, multiply, divide, percent, equals, clear, decimalPoint;
+	String addString, subString, multiString, divString, finalString;
+	double addDouble, subDouble, multiDouble, divDouble, finalDouble, answer;
+	String answerAsString, percentAsString, prcntAnswerAsString;
+	double percentAsDouble, prcntAnswerAsDouble;
+	
+//Basic functions for addition, subtraction, multiplication, and division
 	public static double add(double num1, double num2) {
 
 	    return num1 + num2;
@@ -64,16 +40,15 @@ public class Calculator extends JFrame{
 
 	public static double divide(double num1, double num2) {
 
-	    return num1 / num2;
+	    return num1/num2;
 	}
 
 	public Calculator() {
 	    super("Calculator");
 	    setLayout(new GridBagLayout());
-
 	    setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 	    setVisible(true);
-	    setResizable(false);
+	    setResizable(false); // Sets the JFrame to not be editable
 
 	    GridBagConstraints gbc = new GridBagConstraints();
 
@@ -182,8 +157,9 @@ public class Calculator extends JFrame{
 	    gbc.gridheight = 1;
 	    add(clear, gbc);
 
+	    //Adds button listeners to all of the buttons
 	    zero.addActionListener(new ActionListener() {
-	        @Override
+	        @Override//Allows the inheritance of a subclass
 			public void actionPerformed(ActionEvent e) {
 	            numDisplay.setText(numDisplay.getText() + "0");
 	        }
@@ -304,7 +280,6 @@ public class Calculator extends JFrame{
 	            prcntAnswerAsString = Double.toString(prcntAnswerAsDouble);
 	            numDisplay.setText(prcntAnswerAsString);
 	        }
-
 	    });
 
 	    decimalPoint.addActionListener(new ActionListener() {
@@ -378,5 +353,3 @@ public class Calculator extends JFrame{
 	   }
 
 	}
-
-

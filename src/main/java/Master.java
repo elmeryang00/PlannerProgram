@@ -36,10 +36,12 @@ public class Master {
 	public static JPanel panelF;
 	public static JFrame frameF;
 	public static JLabel textF;
+	public static int red, green, blue;
 	AudioPlayer[] player = new AudioPlayer[4];
 	public Minim minim;
 	public static JFrame musicPlayer;
 	public static JMenuBar menuBarF;
+	public static JLabel textFinal;
 
 	// Timer timer = new Timer(this, 1000/60);
 	// public void actionPerformed(ActionEvent e) //Checks Rando to see if it is
@@ -76,6 +78,8 @@ public class Master {
 		panel.setLayout(null); // Allows the JButtons and JLabels to be moved
 		// panel.setBackground(Color.black);
 
+		textFinal = MasterCreater.getText();
+		
 		MasterCreater textCreate = new MasterCreater();
 		textCreate.textDraw();
 
@@ -83,6 +87,13 @@ public class Master {
 		// play .wav files
 		musicPlayer = MusicMixer.getFrameMusic();
 		musicPlayer.setVisible(false);
+		
+		
+		red = CustomSlider.getR();
+		green = CustomSlider.getG();
+		blue = CustomSlider.getB();
+		
+				
 		/*
 		 * JLabel text = new JLabel("All in 1 Planner"); // Displays text Maze
 		 * // Runner
@@ -98,7 +109,8 @@ public class Master {
 		 * panel.add(text); text.setVisible(true);
 		 * 
 		 */
- 		 /* AudioPlayer[] player = new AudioPlayer[4]; Minim minim; int count;
+		/*
+ 		 * AudioPlayer[] player = new AudioPlayer[4]; Minim minim; int count;
 		 * minim = new Minim(this);
 		 * 
 		 * count=(int)(Math.random()*4 + 1); player[0] =
@@ -263,92 +275,27 @@ public class Master {
 		Black.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// text.setForeground(Color.BLACK);
-				// System.out.println("hello");
+				 textFinal.setForeground(Color.BLACK);
+
 			}
 		});
 
 		textMenu.add(Black);
 
-		JMenuItem CustomText = new JMenuItem("Custom");
-		CustomText.addActionListener(new ActionListener() {
+		JMenuItem BlueText = new JMenuItem("Blue");
+		BlueText.addActionListener(new ActionListener() {
 
-			public void actionPerformed(ActionEvent e) {
-				Random randy = new Random();
-				while (true) {
-					try {
-						Thread.sleep(250);
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					// text.setForeground(new
-					// Color(randy.nextInt(255),randy.nextInt(255),randy.nextInt(255)));
-					// text.setForeground(Color.BLUE);
-					System.out.println("setting text a hole computer");
+			public void actionPerformed(ActionEvent e) 
+				{
+					textFinal.setForeground(Color.BLUE);
+					System.out.println("hello");
 				}
-			}
+
 		});
 
-		textMenu.add(CustomText);
-
+		textMenu.add(BlueText);
 		background = new JMenu("Background");
-
 		menu.add(background);
-
-		JMenuItem blue = new JMenuItem("Blue");
-		blue.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				panel.setBackground(Color.BLUE);
-			}
-		});
-		background.add(blue);
-
-		JMenuItem black = new JMenuItem("Black");
-		black.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				panel.setBackground(Color.BLACK);
-			}
-		});
-		background.add(black);
-
-		JMenuItem green = new JMenuItem("Green");
-		green.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				panel.setBackground(Color.GREEN);
-			}
-		});
-		background.add(green);
-
-		JMenuItem red = new JMenuItem("Red");
-		red.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				panel.setBackground(Color.RED);
-			}
-		});
-		background.add(red);
-
-		JMenuItem gray = new JMenuItem("Gray");
-		gray.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				panel.setBackground(Color.GRAY);
-			}
-		});
-		background.add(gray);
-
-		JMenuItem white = new JMenuItem("White");
-		white.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				panel.setBackground(Color.WHITE);
-			}
-		});
-		background.add(white);
 
 		JMenuItem custom = new JMenuItem("Custom");
 

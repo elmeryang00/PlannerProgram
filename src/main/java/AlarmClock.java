@@ -28,29 +28,26 @@ import javax.swing.WindowConstants;
 
 
 public class AlarmClock  extends Applet implements ActionListener, Runnable {
+	
+	/*
+	 Alarm Clock that allows User Input for both Time and Music from their desktop finder. Also contains a toggle function that 
+	 allows the user to turn off the music function.
+	 */
 
-   // properties of the applet....
+ 
+   Date alartTime;  
 
-   // The current time the alarm is set for
-   Date alartTime;   // NOTE: we ignore the year/month/day parts of the date
-
-   // The music file (it's location) to play when the alarm should go off
    String musicFile;
 
-   // GUI related properties...
+   JLabel currentTime;       
 
-   // top row
-   JLabel currentTime;        // label showing the current time
+   JLabel alarmTime;          
+   JSpinner alarmSetter;
+   JButton setAlarm;          
 
-   // alarm related stuff
-   JLabel alarmTime;          // label showing the currently set alarm time
-   JSpinner alarmSetter;      // input for selecting a new alarm time
-   JButton setAlarm;          // button to click to set a new alarm time
-
-   // file-picker related stuff
-   JLabel fileName;           // label showing the file currently set to play
-   JFileChooser fileChooser;  // the file-chooser widget
-   JButton fileChooserButton; // the button that "activates" the above file-chooser widget
+   JLabel fileName;          
+   JFileChooser fileChooser;  
+   JButton fileChooserButton; 
    JButton setMusic;        
    Thread runner;   
    int hours, minutes, seconds;
@@ -62,27 +59,22 @@ public class AlarmClock  extends Applet implements ActionListener, Runnable {
    File wav;
    JPanel filePanel;
 
-   // applet specific methods
-
    @Override
 public void init() {
 
 	  JFrame Alarm = new JFrame("Alarm");
 	  Alarm.setSize(350, 330);
 	  Alarm.setVisible(true);
-	  Alarm.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+	  Alarm.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); //Sets the JFrame to only close otu fo the frame
 	  Alarm.setTitle("Alarm"); 
-	  Alarm.setResizable(false);
-	  
-	 
-	  //Alarm.setLayout(null);
-
-	  
+	  Alarm.setResizable(false);	  
 	   
       Alarm.setLayout(new BorderLayout());
       JPanel topPanel = new JPanel();
       topPanel.setBackground(new Color(CustomSlider.getR(), CustomSlider.getG(), CustomSlider.getB()));
       topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
+      
+      //Main panel of the Frame
 
       JPanel alarmPanel = new JPanel();
       alarmPanel.setLayout(null);
@@ -93,6 +85,7 @@ public void init() {
       filePanel.setLayout(new BoxLayout(filePanel, BoxLayout.Y_AXIS));
       filePanel.setBackground(new Color(CustomSlider.getR(), CustomSlider.getG(), CustomSlider.getB()));
 
+      //Panel that contains the Time functions
       
       JLabel topLabel = new JLabel("Current Time:");
       topLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -126,6 +119,7 @@ public void init() {
       runner = new Thread(this);
       runner.start();
       
+      //Sets JText 
 
       JPanel text = new JPanel();
       text.setBackground(new Color(CustomSlider.getR(), CustomSlider.getG(), CustomSlider.getB()));
@@ -137,6 +131,7 @@ public void init() {
       r.setToolTipText("Press Enter to enter value");
       text.add(r);
       
+      //Action Listeners for the Hour Button
       r.addActionListener(new ActionListener()
       {
     	  @Override
@@ -206,6 +201,8 @@ public void init() {
       s.setToolTipText("Press Enter to enter value");
       s.setBounds(10, 0, 100, 50);
       
+      //Adds the Action Listener for the Minute Button
+      
       s.addActionListener(new ActionListener()
       {
     	  @Override
@@ -262,6 +259,8 @@ public void init() {
       Alarm.add(alarmPanel);
       s.setVisible(true);
       
+      //Toggle bar set-up
+      
    filePanel.setVisible(true);
    JCheckBox active = new JCheckBox("Music Customizer");
    active.setToolTipText("Unchecking the box removes the Alarm Music Settings Panel");
@@ -288,7 +287,7 @@ public void init() {
 
    
    
-   
+   //Allows the user to select items from Finder
    
    //Selecting Music Code
    filePanel.add(new JLabel("Music File:"));
@@ -328,6 +327,8 @@ public void actionPerformed(ActionEvent e)
 	         //Clip r = (Clip) fileChooser.getSelectedFile();
 	      }	     
 }   
+   
+   //Plays Music
    public void alarmRing() 
    {
 	   Date current = new Date();

@@ -15,7 +15,8 @@ public class SwingCalendar extends JFrame {
     this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     this.setBackground(new Color(CustomSlider.getR(), CustomSlider.getG(), CustomSlider.getB()));
     this.setTitle("Swing Calandar");
-    this.setSize(300,200);
+    this.setSize(300,166);
+    this.setResizable(false);
     this.setLayout(new BorderLayout());
     this.setVisible(true);
  
@@ -59,7 +60,13 @@ public class SwingCalendar extends JFrame {
     this.add(panel,BorderLayout.NORTH);
     this.add(pane,BorderLayout.CENTER);
  
+    JPanel panelSouth = new JPanel();
+    panelSouth.setVisible(true);
+    panelSouth.setBackground(new Color(CustomSlider.getR(), CustomSlider.getG(), CustomSlider.getB()));
+    panel.add(panelSouth,BorderLayout.SOUTH);
+    
     this.updateMonth();
+ 
  
   }
  

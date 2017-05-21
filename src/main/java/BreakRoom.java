@@ -22,6 +22,10 @@ public class BreakRoom implements ActionListener {
 	public static final int DELAY = 10;
 	private static JLabel statusbar;
 	
+	/*
+		
+	 */
+	
 	public static void Create() {
 		JFrame frame = new JFrame(); // Creates Main Screen JFrame
 		// frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);; //
