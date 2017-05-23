@@ -39,7 +39,8 @@ public class AlarmClock  extends Applet implements ActionListener, Runnable {
 
    String musicFile;
 
-   JLabel currentTime;       
+   JLabel currentTime;  
+   JFrame alarmFrame;
 
    JLabel alarmTime;          
    JSpinner alarmSetter;
@@ -60,12 +61,14 @@ public class AlarmClock  extends Applet implements ActionListener, Runnable {
    JPanel filePanel;
 
    @Override
+   //Sets up the Alarm
 public void init() {
 
 	  JFrame Alarm = new JFrame("Alarm");
+	  alarmFrame = Alarm;
 	  Alarm.setSize(350, 330);
 	  Alarm.setVisible(true);
-	  Alarm.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); //Sets the JFrame to only close otu fo the frame
+	  Alarm.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); //Sets the JFrame to only close only the frame
 	  Alarm.setTitle("Alarm"); 
 	  Alarm.setResizable(false);	  
 	   
@@ -114,7 +117,7 @@ public void init() {
       Alarm.add(alarmPanel, BorderLayout.LINE_START);
       Alarm.add(filePanel, BorderLayout.LINE_END);
 
-      setAlarm.addActionListener(this);
+      setAlarm.addActionListener(this); //Adds action listener to the Button
 
       runner = new Thread(this);
       runner.start();
@@ -125,7 +128,7 @@ public void init() {
       text.setBackground(new Color(CustomSlider.getR(), CustomSlider.getG(), CustomSlider.getB()));
       text.setLayout(null);
       JLabel hourText = new JLabel();
-      JTextField r = new JTextField("Insert Hour", 5) ;
+      JTextField r = new JTextField("Insert Hour", 5) ; //Sets the Input Field
       //r.setBackground(Color.BLUE);
       r.setBounds(10, 0, 100, 50);
       r.setToolTipText("Press Enter to enter value");
@@ -328,6 +331,18 @@ public void actionPerformed(ActionEvent e)
 	      }	     
 }   
    
+   public void clipPlay(Clip clipF)
+   {
+	  clipF.start();
+	  alarmFrame.addWindowListener(new java.awt.event.WindowAdapter() 
+	  {
+		  @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) 
+		  {
+			  clipF.stop();
+		  }
+	  });
+   }
    //Plays Music
    public void alarmRing() 
    {
@@ -339,7 +354,7 @@ public void actionPerformed(ActionEvent e)
 			   //AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("AlarmW.mp3").getAbsoluteFile());
 		        Clip clip = AudioSystem.getClip();
 		        clip.open(audioInputStream);
-		        clip.start();
+		        clipPlay(clip);
 		        
 		    } catch(Exception ex) {
 		        System.out.println("Error with playing sound.");
@@ -348,6 +363,8 @@ public void actionPerformed(ActionEvent e)
 	   }
    }
 	   
+   
+
 @Override
 public void run() {
 	System.out.println("run");
